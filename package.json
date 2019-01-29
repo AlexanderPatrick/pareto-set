@@ -1,0 +1,27 @@
+{
+  "name": "pareto-set",
+  "version": "1.0.0",
+  "description": "A function that filters an array down to the pareto optimal set based on an array of objective functions",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AlexanderPatrick/pareto-set.git"
+  },
+  "keywords": [
+    "pareto",
+    "optimal",
+    "multi-objective"
+  ],
+  "author": "Alexander Patrick <ajgp1989@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexanderPatrick/pareto-set/issues"
+  },
+  "homepage": "https://github.com/AlexanderPatrick/pareto-set",
+  "devDependencies": {
+    "jest": "^24.0.0"
+  }
+}
