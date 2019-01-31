@@ -8,20 +8,23 @@ module.exports = (arrayToOptimise, objectiveFunctions) => {
         }
 
         const optimal = paretoArray.reduce((optimal, paretoOptimalItem) => {
-            const best = objectiveFunctions.reduce((best, optimisingFunction) => {
-                if (best < 0) {
-                    return -1;
-                } 
+            const evaluation = objectiveFunctions.reduce((evaluation, optimisingFunction) => {
+                if (evaluation.best < 0 && evaluation.worst > 0) {
+                    return evaluation;
+                }
 
                 const sortValue = optimisingFunction(item, paretoOptimalItem);
-                if (best === undefined || best > sortValue) {
-                    best = sortValue;
+                if (evaluation.best === undefined || sortValue < evaluation.best) {
+                    evaluation.best = sortValue;
+                } 
+                if (evaluation.worst === undefined || sortValue > evaluation.worst) {
+                    evaluation.worst = sortValue;
                 } 
 
-                return best;
-            }, undefined);
+                return evaluation;
+            }, {best: undefined, worst: undefined});
 
-            if (best > 0) {
+            if (evaluation.best > 0 || (evaluation.best === 0 && evaluation.worst > 0)) {
                 optimal = false;
             }
             return optimal;

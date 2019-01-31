@@ -48,4 +48,19 @@ describe('Pareto Function', () => {
             {param1: 93, param2: 83, param3: 20},
         ]);
     });
+
+    it('should not return elements that only draw on some objectives but lose on others', () => {
+        const arrayToOptimise = [
+            {param1: 80, param2: 44},
+            {param1: 80, param2: 35},
+        ];
+        const objectiveFunctions = [
+            (a,b) => b.param1-a.param1,
+            (a,b) => b.param2-a.param2,
+        ];
+        const result = pareto(arrayToOptimise, objectiveFunctions);
+        expect(result).toEqual([
+            {param1: 80, param2: 44},
+        ]);
+    });
 });
