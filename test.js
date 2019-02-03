@@ -63,4 +63,19 @@ describe('Pareto Function', () => {
             {param1: 80, param2: 44},
         ]);
     });
+
+    it('should not blindly accept the first element that wins the first objective function', () => {
+        const arrayToOptimise = [
+            {param1: 80, param2: 35},
+            {param1: 80, param2: 44},
+        ];
+        const objectiveFunctions = [
+            (a,b) => b.param1-a.param1,
+            (a,b) => b.param2-a.param2,
+        ];
+        const result = pareto(arrayToOptimise, objectiveFunctions);
+        expect(result).toEqual([
+            {param1: 80, param2: 44},
+        ]);
+    });
 });
